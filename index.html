@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Bibliotherapy & Learning Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F7F3EB;
+  --cream-2: #EDE8DC;
+  --cream-3: #E3DDD1;
+  --forest: #1C3422;
+  --forest-mid: #2C4E35;
+  --forest-light: #3D6B49;
+  --amber: #B8782A;
+  --amber-light: #E8C485;
+  --amber-pale: #F5E6C8;
+  --terracotta: #8B4E38;
+  --ink: #1E1A14;
+  --ink-mid: #3D3830;
+  --ink-light: #6B6358;
+  --ink-pale: #9C9488;
+  --white: #FDFAF5;
+  --rule: rgba(30,26,20,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── TYPOGRAPHY ── */
+.display { font-family: 'DM Serif Display', 'Playfair Display', Georgia, serif; }
+.ui { font-family: 'Jost', system-ui, sans-serif; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(247,243,235,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--rule);
+}
+.nav-logo {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mid);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--forest); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(28,52,34,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 20% 80%, rgba(184,120,42,0.07) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-text { padding-top: 5rem; }
+.hero-eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 11px; font-weight: 500; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 1.5rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: inline-block; width: 28px; height: 1px;
+  background: var(--amber);
+}
+.hero-h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 1.06;
+  color: var(--forest);
+  font-weight: 400;
+  margin-bottom: 2rem;
+}
+.hero-h1 em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+.hero-desc {
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--ink-mid);
+  max-width: 460px;
+  margin-bottom: 2.5rem;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--forest); text-decoration: none;
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 3px;
+  transition: gap 0.2s, color 0.2s;
+}
+.hero-cta:hover { gap: 16px; color: var(--forest-mid); }
+.hero-cta svg { width: 14px; height: 14px; }
+
+.hero-visual {
+  display: flex; flex-direction: column;
+  align-items: flex-end; gap: 1.25rem;
+  padding-top: 7rem; padding-right: 1rem;
+}
+.book-stack {
+  display: flex; flex-direction: column; gap: 8px;
+  align-items: flex-end;
+}
+.book-spine {
+  border-radius: 3px; display: flex; align-items: center;
+  padding: 0 14px; cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  text-decoration: none;
+}
+.book-spine:hover { transform: translateX(-8px); box-shadow: 4px 4px 18px rgba(0,0,0,0.1); }
+.book-spine span {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  white-space: nowrap;
+}
+.b1 { height: 44px; width: 260px; background: var(--forest); }
+.b1 span { color: rgba(245,230,200,0.9); }
+.b2 { height: 38px; width: 220px; background: var(--amber); }
+.b2 span { color: rgba(255,248,230,0.95); }
+.b3 { height: 40px; width: 240px; background: var(--cream-3); border: 1px solid var(--cream-3); }
+.b3 span { color: var(--forest-mid); }
+.b4 { height: 36px; width: 200px; background: var(--terracotta); }
+.b4 span { color: rgba(253,250,245,0.9); }
+.b5 { height: 42px; width: 250px; background: var(--forest-mid); }
+.b5 span { color: rgba(245,230,200,0.85); }
+
+.hero-pull {
+  border-left: 2px solid var(--amber);
+  padding-left: 1.25rem;
+  margin-top: 1rem;
+}
+.hero-pull p {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1rem; font-style: italic;
+  color: var(--ink-mid); line-height: 1.55;
+}
+.hero-pull cite {
+  display: block; margin-top: 6px;
+  font-family: 'Jost', sans-serif; font-size: 10.5px;
+  font-style: normal; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-pale);
+}
+
+/* ── SECTION SHELL ── */
+section { padding: 6rem 3rem; }
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block; width: 22px; height: 1px;
+  background: var(--amber);
+}
+
+/* ── ABOUT ── */
+#about { background: var(--forest); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: start;
+}
+#about .section-label { color: var(--amber-light); }
+#about .section-label::before { background: var(--amber-light); }
+.about-tagline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 400; line-height: 1.12;
+  color: var(--cream);
+}
+.about-tagline em { font-style: italic; color: var(--amber-light); }
+.about-body { color: rgba(237,232,220,0.82); font-size: 1rem; line-height: 1.8; }
+.about-body p + p { margin-top: 1.25rem; }
+.about-quote {
+  border-left: 2px solid var(--amber-light);
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.25rem;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(237,232,220,0.85);
+  line-height: 1.65;
+}
+.about-quote span {
+  display: block;
+  margin-top: 6px;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: rgba(237,232,220,0.4);
+}
+.credentials {
+  margin-top: 2.5rem; display: flex; flex-direction: column; gap: 10px;
+}
+.cred-item {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.06em;
+  color: rgba(237,232,220,0.6);
+}
+.cred-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber-light); flex-shrink: 0;
+}
+
+/* ── PHILOSOPHY ── */
+#philosophy {
+  background: var(--cream-2);
+  border-top: 0.5px solid var(--rule);
+  border-bottom: 0.5px solid var(--rule);
+}
+.philosophy-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  border: 0.5px solid var(--rule);
+  margin-top: 3rem;
+}
+.phil-card {
+  padding: 2.5rem 2rem;
+  background: var(--cream-2);
+  border: 0.5px solid var(--rule);
+  position: relative;
+  transition: background 0.2s;
+}
+.phil-card:hover { background: var(--white); }
+.phil-num {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 3rem; font-style: italic;
+  color: var(--amber-pale); line-height: 1;
+  margin-bottom: 1rem;
+}
+.phil-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.3rem; color: var(--forest);
+  margin-bottom: 0.75rem;
+}
+.phil-body { font-size: 0.9rem; color: var(--ink-light); line-height: 1.7; }
+
+/* ── PROJECTS ── */
+#projects { background: var(--white); }
+.projects-intro {
+  max-width: 620px;
+  font-size: 1.05rem; color: var(--ink-mid); line-height: 1.75;
+  margin-bottom: 3.5rem;
+}
+.projects-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5px;
+  background: var(--rule);
+}
+.project-card {
+  background: var(--white);
+  padding: 2.5rem;
+  position: relative; overflow: hidden;
+  cursor: default;
+  transition: background 0.25s;
+}
+.project-card:hover { background: var(--cream); }
+.project-card:hover .project-arrow { opacity: 1; transform: translate(0, 0); }
+.project-tag {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.15em;
+  text-transform: uppercase; margin-bottom: 1.25rem;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.tag-reading { color: var(--forest); }
+.tag-research { color: var(--terracotta); }
+.tag-workshop { color: var(--amber); }
+.tag-design { color: var(--forest-light); }
+.project-num {
+  position: absolute; top: 2.5rem; right: 2.5rem;
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 300; color: var(--ink-pale); letter-spacing: 0.05em;
+}
+.project-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.6rem; line-height: 1.18;
+  color: var(--forest); margin-bottom: 1rem;
+}
+.project-body {
+  font-size: 0.9rem; color: var(--ink-light);
+  line-height: 1.7; margin-bottom: 1.5rem;
+}
+.project-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 99px;
+  border: 0.5px solid var(--rule); color: var(--ink-light);
+  background: transparent;
+}
+.project-arrow {
+  position: absolute; bottom: 2.5rem; right: 2.5rem;
+  opacity: 0; transform: translate(-4px, 4px);
+  transition: opacity 0.2s, transform 0.2s;
+  color: var(--amber); font-size: 1.2rem;
+}
+
+/* ── RESEARCH STRIP ── */
+#research {
+  background: var(--amber-pale);
+  border-top: 0.5px solid rgba(184,120,42,0.2);
+}
+.research-inner {
+  display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: start;
+}
+.research-lede {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+  line-height: 1.15; color: var(--forest);
+}
+.research-lede em { font-style: italic; }
+.evidence-rows { display: flex; flex-direction: column; gap: 1px; }
+.evidence-row {
+  background: rgba(247,243,235,0.5);
+  padding: 1.1rem 1.25rem;
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 1rem;
+  border: 0.5px solid rgba(184,120,42,0.15);
+  border-radius: 4px;
+  margin-bottom: 2px;
+}
+.evidence-row:hover { background: rgba(247,243,235,0.85); }
+.ev-label {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; color: var(--forest);
+}
+.ev-sub {
+  font-family: 'Lora', serif; font-size: 11.5px;
+  color: var(--ink-light); margin-top: 2px;
+}
+.ev-badge {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 99px; white-space: nowrap;
+}
+.ev-strong { background: rgba(28,52,34,0.1); color: var(--forest); }
+.ev-moderate { background: rgba(184,120,42,0.15); color: var(--amber); }
+.ev-mixed { background: rgba(0,0,0,0.06); color: var(--ink-light); }
+.ev-weak { background: rgba(139,78,56,0.1); color: var(--terracotta); }
+
+/* ── FLOW STATE STRIP ── */
+#flow {
+  background: var(--forest);
+  padding: 5rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: center;
+}
+.flow-text .section-label { color: var(--amber-light); }
+.flow-text .section-label::before { background: var(--amber-light); }
+.flow-h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--cream); line-height: 1.15; margin-bottom: 1.5rem;
+}
+.flow-h2 em { font-style: italic; color: var(--amber-light); }
+.flow-body { font-size: 0.95rem; color: rgba(237,232,220,0.75); line-height: 1.8; }
+.flow-body p + p { margin-top: 1rem; }
+
+.flow-diagram {
+  display: flex; flex-direction: column; gap: 1px;
+}
+.flow-row {
+  display: flex; gap: 1px;
+}
+.flow-cell {
+  flex: 1; padding: 1.25rem 1rem;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 90px;
+  border-radius: 2px;
+}
+.cell-label {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+}
+.cell-sub { font-family: 'Lora', serif; font-size: 10.5px; margin-top: 3px; font-style: italic; }
+.fc-boredom { background: rgba(237,232,220,0.06); }
+.fc-boredom .cell-label { color: rgba(237,232,220,0.35); }
+.fc-boredom .cell-sub { color: rgba(237,232,220,0.25); }
+.fc-relax { background: rgba(237,232,220,0.1); }
+.fc-relax .cell-label { color: rgba(237,232,220,0.5); }
+.fc-relax .cell-sub { color: rgba(237,232,220,0.35); }
+.fc-anxiety { background: rgba(139,78,56,0.25); }
+.fc-anxiety .cell-label { color: rgba(237,200,180,0.8); }
+.fc-anxiety .cell-sub { color: rgba(237,200,180,0.55); }
+.fc-arousal { background: rgba(184,120,42,0.25); }
+.fc-arousal .cell-label { color: rgba(245,230,200,0.8); }
+.fc-arousal .cell-sub { color: rgba(245,230,200,0.55); }
+.fc-flow {
+  background: rgba(61,107,73,0.7);
+  border: 1px solid rgba(232,196,133,0.3);
+}
+.fc-flow .cell-label { color: var(--amber-light); }
+.fc-flow .cell-sub { color: rgba(232,196,133,0.75); }
+.flow-axis {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-top: 10px;
+}
+.flow-axis-label {
+  font-family: 'Jost', sans-serif; font-size: 9.5px;
+  font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(237,232,220,0.3);
+}
+
+/* ── PROCESS ── */
+#process { background: var(--cream); border-top: 0.5px solid var(--rule); }
+.process-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  color: var(--forest); line-height: 1.15;
+  max-width: 500px; margin-bottom: 4rem;
+}
+.process-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.5px; background: var(--rule);
+}
+.process-step {
+  background: var(--cream); padding: 2.5rem 1.75rem;
+  position: relative;
+  transition: background 0.2s;
+}
+.process-step:hover { background: var(--white); }
+.step-line {
+  width: 2rem; height: 1px; background: var(--amber);
+  margin-bottom: 1.5rem;
+}
+.step-num {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 0.75rem;
+}
+.step-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.2rem; color: var(--forest);
+  margin-bottom: 0.75rem;
+}
+.step-body { font-size: 0.88rem; color: var(--ink-light); line-height: 1.65; }
+
+/* ── CONTACT ── */
+#contact {
+  background: var(--cream-2);
+  border-top: 0.5px solid var(--rule);
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: start;
+}
+.contact-h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3.5rem);
+  line-height: 1.1; color: var(--forest);
+  margin-top: 1.5rem; margin-bottom: 1.5rem;
+}
+.contact-h2 em { font-style: italic; color: var(--amber); }
+.contact-note { font-size: 0.95rem; color: var(--ink-light); line-height: 1.75; }
+.contact-links { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.contact-link-row {
+  display: flex; align-items: center; gap: 1rem;
+  padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--rule);
+}
+.contact-link-row:last-child { border-bottom: none; }
+.contact-link-type {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-pale); width: 90px; flex-shrink: 0;
+}
+.contact-link-val {
+  font-size: 0.95rem; color: var(--forest);
+  text-decoration: none; border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+.contact-link-val:hover { border-color: var(--forest); }
+
+.contact-form { padding-top: 0.5rem; }
+.form-field { margin-bottom: 1.5rem; }
+.form-label {
+  font-family: 'Jost', sans-serif; font-size: 10.5px;
+  font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-light); display: block; margin-bottom: 6px;
+}
+.form-input, .form-textarea {
+  width: 100%;
+  font-family: 'Lora', Georgia, serif; font-size: 0.95rem;
+  color: var(--ink);
+  background: transparent;
+  border: none; border-bottom: 1px solid var(--rule);
+  padding: 8px 0; outline: none;
+  transition: border-color 0.2s;
+  resize: none;
+}
+.form-input:focus, .form-textarea:focus { border-color: var(--forest); }
+.form-input::placeholder, .form-textarea::placeholder { color: var(--ink-pale); }
+.form-textarea { height: 80px; }
+.form-submit {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); background: var(--forest);
+  border: none; padding: 14px 28px; cursor: pointer;
+  border-radius: 2px; transition: background 0.2s, gap 0.2s;
+}
+.form-submit:hover { background: var(--forest-mid); gap: 16px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--forest);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-left {
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 400; letter-spacing: 0.1em;
+  color: rgba(237,232,220,0.4);
+}
+.footer-mark {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 0.9rem; font-style: italic;
+  color: rgba(237,232,220,0.3);
+}
+
+/* ── ANIMATIONS ── */
+.fade-up {
+  opacity: 1; transform: translateY(0);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.animate-out { opacity: 0; transform: translateY(24px); }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .hero { grid-template-columns: 1fr; padding: 6rem 1.5rem 3rem; min-height: auto; gap: 3rem; }
+  .hero-visual { align-items: flex-start; padding-top: 0; }
+  .about-grid, .research-inner, #flow { grid-template-columns: 1fr; gap: 2.5rem; }
+  .philosophy-grid, .process-steps { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  #contact { grid-template-columns: 1fr; gap: 3rem; }
+  section { padding: 4rem 1.5rem; }
+  #flow { padding: 4rem 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .philosophy-grid, .process-steps { grid-template-columns: 1fr; }
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Reading&nbsp;as&nbsp;Practice</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#research">Research</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <p class="hero-eyebrow">Bibliotherapy &amp; Learning Design</p>
+    <h1 class="hero-h1">
+      Reading is<br>
+      how we find<br>
+      <em>our way back</em><br>
+      to ourselves.
+    </h1>
+    <p class="hero-desc">
+      Reading is how we find the yearning of our soul —
+      and discover somewhere we truly belong.
+      I design experiences that open that door.
+    </p>
+    <a href="#projects" class="hero-cta">
+      View my work
+      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M1 7h12M7 1l6 6-6 6"/>
+      </svg>
+    </a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="book-stack">
+      <a href="#proj-shh-elf" class="book-spine b1"><span>Reading in a Second Tongue — Shh-elf</span></a>
+      <a href="#proj-dyslexia" class="book-spine b2"><span>The Format Question — Dyslexia Toolkit</span></a>
+      <a href="#proj-workshop" class="book-spine b3"><span>Reading the Inner Self — Workshop</span></a>
+      <a href="#proj-teaching" class="book-spine b4"><span>For the Girl in the Library — Teaching</span></a>
+      <a href="#about" class="book-spine b5"><span>The Gold Detector — On Bibliotherapy</span></a>
+    </div>
+    <div class="hero-pull">
+      <p>"A good novel helps me find out what I think about it. It gives me access to my world, rather than access to the world."</p>
+      <cite>— Joshua Landy</cite>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">About</p>
+      <h2 class="about-tagline">
+        Reading is how<br>I learned to hear<br><em>what I already<br>knew.</em>
+      </h2>
+      <div class="credentials">
+        <div class="cred-item"><span class="cred-dot"></span> Zuntold — Bibliotherapy, London</div>
+        <div class="cred-item"><span class="cred-dot"></span> Stanford — Ed.M., Learning Design</div>
+        <div class="cred-item"><span class="cred-dot"></span> Columbia — Information Science + Comparative Literature</div>
+        <div class="cred-item"><span class="cred-dot"></span> Headspace · Stanford Life Design Lab</div>
+        <div class="cred-item"><span class="cred-dot"></span> Certified Health &amp; Wellness Coach</div>
+      </div>
+    </div>
+    <div class="about-body">
+      <p>
+        I believe reading is one of the few experiences that can dissolve self-consciousness.
+        When you enter deep flow with a demanding text, the evaluating mind falls away —
+        the part of you that monitors and edits and second-guesses. And in that quiet,
+        the unconscious begins to speak — through character, through image, through the
+        sudden recognition that something you've been carrying without knowing it
+        has finally found a form.
+      </p>
+      <p>
+        This is what I mean by bibliotherapy. Not self-help books. Not reading as
+        productivity. The kind of reading where something <em>loosens</em> — where
+        you close the book and you are not quite the same person who opened it,
+        though you can't say exactly why.
+      </p>
+      <p>
+        I grew up in Beijing's Haidian district, where every hour had to be useful
+        and math competitions were the measure of a serious mind. I found my escape
+        in 《儿童文学》 magazine and the novels of 顾抒 — her "秘境小说," stories about
+        ordinary kids who discover a hidden world beneath the one everyone else accepts.
+        I couldn't have told you then why I loved them so much. I only knew
+        I couldn't stop. That, I now understand, was the detector beeping.
+      </p>
+      <p>
+        Years later, rereading 《夜色玛奇莲》, I found this line:
+      </p>
+      <blockquote class="about-quote">
+        "有内心空洞的人，就有兽，有兽的存在，就有捕兽人和交易的市场。"
+        <span>— 顾抒，《夜色玛奇莲》</span>
+      </blockquote>
+      <p>
+        The beast the mysterious guardian hunts is not a monster. It is the repressed,
+        unintegrated content of the psyche — what Jung would call the Shadow.
+        I didn't know this when I was eight. I only knew I couldn't stop reading.
+        That is, I think, the truest evidence for everything I now study: the unconscious
+        recognized the archetype long before the conscious mind had language for it.
+        The book found me. I didn't find it.
+      </p>
+      <p>
+        At 16, I came to the United States alone. In English, I lost that space.
+        Chinese I had read in blocks — meaning arriving whole. English came word by word,
+        the evaluating mind always running ahead of the feeling. I read
+        <em>Steppenwolf</em> during those years and something cracked open anyway —
+        not because I understood it, but because Harry Haller's wolf named something
+        I'd been carrying without knowing it. <em>Your soul will not simplify.</em>
+        Hesse had said it better than I could.
+      </p>
+      <p>
+        After eye surgery, I began using audiobooks. Listening while reading, I found
+        an English flow state for the first time — and realized that what I'd been
+        struggling with might be language-sensitive. The barrier was never my mind.
+        It was the format.
+      </p>
+      <p>
+        I double-majored in Information Science and Comparative Literature at Columbia,
+        and talked my advisor into letting Python count as my third language requirement.
+        My master's thesis at Stanford became <em>Shh-elf</em>, a book-recommendation
+        app built for second-language readers. Now I work at Zuntold, a bibliotherapy
+        company in London — where I get to do this work properly, grounded in Jung,
+        Hillman, and Landy, and in the books that found me long before I had words
+        for any of this.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <p class="section-label">Philosophy</p>
+  <div class="philosophy-grid">
+    <div class="phil-card fade-up">
+      <div class="phil-num">01</div>
+      <h3 class="phil-title">The gold detector</h3>
+      <p class="phil-body">
+        When you read a sentence that makes you shiver, that's your archetype
+        recognizing itself. You carry a gold detector — your archetypal identity —
+        into the world of fiction. When you encounter gold, the detector beeps.
+        You don't need to name what you're looking for. The shiver tells you.
+        Fiction is where you find out what kind of gold is yours.
+      </p>
+    </div>
+    <div class="phil-card fade-up" style="transition-delay:0.1s">
+      <div class="phil-num">02</div>
+      <h3 class="phil-title">The guided dream</h3>
+      <p class="phil-body">
+        Reading complex fiction is like entering a guided dream — it takes you
+        from the conscious, controlled mind into the unconscious, with metaphor
+        as the bridge. In that state, the evaluating mind falls away. What surfaces
+        is not what you planned to find. It's what was already there, waiting
+        for the right image to call it forward.
+      </p>
+    </div>
+    <div class="phil-card fade-up" style="transition-delay:0.2s">
+      <div class="phil-num">03</div>
+      <h3 class="phil-title">The barrier is never the reader</h3>
+      <p class="phil-body">
+        For HSPs, it's overstimulation — the real world gives their sensitivity
+        nowhere to belong. For dyslexic readers, it's the format that keeps
+        the evaluating mind in charge. The problem is always the conditions,
+        not the person. Restore the conditions, and the deeper work
+        becomes possible again.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label">Selected Work</p>
+  <p class="projects-intro">
+    Projects at the intersection of bibliotherapy, learning design, and attention research —
+    built with and for the dyslexic and ADHD reading community.
+  </p>
+  <div class="projects-grid">
+
+    <div class="project-card fade-up" id="proj-shh-elf">
+      <span class="project-tag tag-reading">● Product in Development</span>
+      <span class="project-num">01</span>
+      <h3 class="project-title">Shh-elf</h3>
+      <p class="project-body">
+        A social book-recommendation app designed specifically for second-language readers.
+        Shh-elf helps readers find books calibrated to their current language-flow threshold —
+        not too far beyond reach, not beneath engagement — and connects them with a community
+        navigating the same in-between space.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Second-language readers</span>
+        <span class="pill">Book discovery</span>
+        <span class="pill">ADHD / Dyslexia</span>
+        <span class="pill">Social reading</span>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-card fade-up" style="transition-delay:0.1s" id="proj-dyslexia">
+      <span class="project-tag tag-research">● Research + Design</span>
+      <span class="project-num">02</span>
+      <h3 class="project-title">Dyslexia Reading Aid Toolkit</h3>
+      <p class="project-body">
+        An evidence-synthesis and practitioner toolkit mapping research on TTS, letter spacing,
+        line length, font choice, and syllabification — organized by evidence strength.
+        Also includes a flow theory framework for understanding why format disrupts
+        the reading experience for dyslexic minds. Designed for classroom teachers
+        and accessibility specialists.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Dyslexia</span>
+        <span class="pill">Accessibility</span>
+        <span class="pill">Evidence Review</span>
+        <span class="pill">Flow Theory</span>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-card fade-up" style="transition-delay:0.15s" id="proj-workshop">
+      <span class="project-tag tag-workshop">● Workshop Series</span>
+      <span class="project-num">03</span>
+      <h3 class="project-title">Slow Reading Circles</h3>
+      <p class="project-body">
+        A community reading practice inspired by Lectio Divina and mindfulness pedagogy.
+        Participants read the same short passage three times with different intentions:
+        for content, for feeling, for surprise. Developed during my time at Headspace.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Mindfulness</span>
+        <span class="pill">Community</span>
+        <span class="pill">Facilitation</span>
+        <span class="pill">Slow Pedagogy</span>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+    <div class="project-card fade-up" style="transition-delay:0.2s" id="proj-teaching">
+      <span class="project-tag tag-design">● Teaching Practice</span>
+      <span class="project-num">04</span>
+      <h3 class="project-title">Literature for the 16-Year-Old I Was</h3>
+      <p class="project-body">
+        Working with middle and high school students on reading and writing — offering what
+        I once needed and couldn't find: a space where literature matters, where curiosity
+        isn't impractical, and where students learn that their voice has value.
+        In many ways, this is my way of reaching back.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Middle / High School</span>
+        <span class="pill">Bibliotherapy</span>
+        <span class="pill">Voice &amp; identity</span>
+        <span class="pill">First-gen students</span>
+      </div>
+      <span class="project-arrow">→</span>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- PROCESS -->
+<section id="process">
+  <h2 class="process-title">How I design a reading experience</h2>
+  <div class="process-steps">
+    <div class="process-step fade-up">
+      <div class="step-line"></div>
+      <div class="step-num">Step 01</div>
+      <h3 class="step-title">Reader portrait</h3>
+      <p class="step-body">
+        Understand the person — their reading history, obstacles, pleasure points, and what they
+        most want from reading. Identify whether flow blockers are perceptual, motivational,
+        environmental, or a mismatch in book choice.
+      </p>
+    </div>
+    <div class="process-step fade-up" style="transition-delay:0.08s">
+      <div class="step-line"></div>
+      <div class="step-num">Step 02</div>
+      <h3 class="step-title">Scaffold the format</h3>
+      <p class="step-body">
+        Apply evidence-based typographic and environmental interventions: spacing, line length,
+        TTS, syllabification, sound environment. Reduce the perceptual cost of reading so
+        the meaning can land without friction.
+      </p>
+    </div>
+    <div class="process-step fade-up" style="transition-delay:0.16s">
+      <div class="step-line"></div>
+      <div class="step-num">Step 03</div>
+      <h3 class="step-title">Curate the entry point</h3>
+      <p class="step-body">
+        Match the person to a book at the right challenge level — absorbing but not
+        overwhelming. Prioritize pleasure. Use short-form first if attention
+        is fragile. One flow experience changes everything.
+      </p>
+    </div>
+    <div class="process-step fade-up" style="transition-delay:0.24s">
+      <div class="step-line"></div>
+      <div class="step-num">Step 04</div>
+      <h3 class="step-title">Build the practice</h3>
+      <p class="step-body">
+        Design a sustainable reading practice — consistent time, consistent ritual.
+        Gradually extend sessions and challenge level as confidence grows.
+        Track pleasure, not pages. The relationship with reading transforms.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div>
+    <p class="section-label">Let's talk</p>
+    <h2 class="contact-h2">
+      Got a project,<br>a question,<br>or a <em>great book</em><br>recommendation?
+    </h2>
+    <p class="contact-note">
+      I'm open to collaborations, speaking engagements, and consulting work with
+      schools, publishers, wellness organizations, and edtech teams.
+    </p>
+    <div class="contact-links">
+      <div class="contact-link-row">
+        <span class="contact-link-type">Email</span>
+        <a href="mailto:hello@yourname.com" class="contact-link-val">hello@yourname.com</a>
+      </div>
+      <div class="contact-link-row">
+        <span class="contact-link-type">LinkedIn</span>
+        <a href="#" class="contact-link-val">linkedin.com/in/yourname</a>
+      </div>
+      <div class="contact-link-row">
+        <span class="contact-link-type">Substack</span>
+        <a href="#" class="contact-link-val">Reading as Practice newsletter</a>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form">
+    <div class="form-field">
+      <label class="form-label" for="name">Name</label>
+      <input class="form-input" type="text" id="name" placeholder="Your name">
+    </div>
+    <div class="form-field">
+      <label class="form-label" for="email">Email</label>
+      <input class="form-input" type="email" id="email" placeholder="you@example.com">
+    </div>
+    <div class="form-field">
+      <label class="form-label" for="msg">Message</label>
+      <textarea class="form-textarea" id="msg" placeholder="What are you working on?"></textarea>
+    </div>
+    <button class="form-submit" type="button">
+      Send a note →
+    </button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">© 2025 · Bibliotherapy · Learning Design</span>
+  <span class="footer-mark">"access to my world, rather than access to the world" — Landy</span>
+</footer>
+
+<script>
+const observer = new Intersecti
