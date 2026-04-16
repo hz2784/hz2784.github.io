@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shh-elf — Bibliotherapy & Learning Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F7F3EB;
+  --cream-2: #EDE8DC;
+  --cream-3: #E3DDD1;
+  --forest: #1C3422;
+  --forest-mid: #2C4E35;
+  --forest-light: #3D6B49;
+  --amber: #B8782A;
+  --amber-light: #E8C485;
+  --amber-pale: #F5E6C8;
+  --terracotta: #8B4E38;
+  --ink: #1E1A14;
+  --ink-mid: #3D3830;
+  --ink-light: #6B6358;
+  --ink-pale: #9C9488;
+  --white: #FDFAF5;
+  --rule: rgba(30,26,20,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(247,243,235,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--rule);
+}
+.nav-logo {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mid);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--forest); }
+
+/* ── SECTION SHELL ── */
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block; width: 22px; height: 1px;
+  background: var(--amber);
+}
+
+/* ── PROJECT HERO ── */
+.project-hero {
+  padding: 10rem 3rem 5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.project-hero .section-label { color: var(--forest); }
+.project-hero .section-label::before { background: var(--forest); }
+.project-hero h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-weight: 400; line-height: 1.1;
+  color: var(--forest);
+  margin-bottom: 2rem;
+}
+.project-hero .subtitle {
+  font-size: 1.1rem;
+  color: var(--ink-mid);
+  line-height: 1.8;
+}
+.project-pills {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-top: 2rem;
+}
+.pill {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 99px;
+  border: 0.5px solid var(--rule); color: var(--ink-light);
+  background: transparent;
+}
+
+/* ── DEMO PREVIEW ── */
+.demo-preview {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  background: var(--white);
+}
+.demo-preview iframe {
+  width: 100%;
+  height: 600px;
+  border: none;
+  display: block;
+}
+.demo-preview-bar {
+  display: flex; align-items: center; gap: 6px;
+  padding: 10px 14px;
+  background: var(--cream-2);
+  border-bottom: 1px solid var(--rule);
+}
+.demo-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+.demo-dot:nth-child(1) { background: #FF5F57; }
+.demo-dot:nth-child(2) { background: #FEBC2E; }
+.demo-dot:nth-child(3) { background: #28C840; }
+.demo-preview-link {
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px;
+  background: var(--cream-2);
+  border-top: 1px solid var(--rule);
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--forest);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.demo-preview-link:hover { background: var(--cream-3); }
+
+/* ── PROJECT BODY ── */
+.project-content {
+  padding: 0 3rem 5rem;
+  max-width: 900px;
+}
+.project-content h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.6rem; color: var(--forest);
+  margin-top: 3rem; margin-bottom: 1rem;
+}
+.project-content p {
+  font-size: 1rem; color: var(--ink-mid);
+  line-height: 1.8; margin-bottom: 1.25rem;
+}
+.project-content ul {
+  margin: 0.75rem 0 1.25rem 1.5rem;
+  color: var(--ink-mid);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.project-content li { margin-bottom: 0.4rem; }
+
+/* ── FEATURE GRID ── */
+.feature-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5px; background: var(--rule);
+  margin: 1.5rem 0 2rem;
+}
+.feature-cell {
+  background: var(--cream);
+  padding: 1.5rem;
+  transition: background 0.2s;
+}
+.feature-cell:hover { background: var(--white); }
+.feat-label {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; color: var(--forest);
+  margin-bottom: 4px;
+}
+.feat-sub {
+  font-family: 'Lora', serif; font-size: 12px;
+  color: var(--ink-light); line-height: 1.6;
+}
+
+/* ── BACK LINK ── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--forest); text-decoration: none;
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 3px;
+  margin-top: 3rem;
+  transition: gap 0.2s;
+}
+.back-link:hover { gap: 14px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--forest);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-left {
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 400; letter-spacing: 0.1em;
+  color: rgba(237,232,220,0.4);
+}
+.footer-mark {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 0.9rem; font-style: italic;
+  color: rgba(237,232,220,0.3);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .project-hero { padding: 7rem 1.5rem 3rem; grid-template-columns: 1fr; }
+  .demo-preview iframe { height: 500px; }
+  .project-content { padding: 0 1.5rem 4rem; }
+  .feature-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Reading&nbsp;as&nbsp;Practice</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- PROJECT HERO -->
+<div class="project-hero">
+  <div class="project-hero-text">
+    <p class="section-label">Product in Development</p>
+    <h1>Shh-elf</h1>
+    <p class="subtitle">
+      A social book-recommendation app designed specifically for second-language readers.
+      Shh-elf helps readers find books calibrated to their current language-flow threshold —
+      not too far beyond reach, not beneath engagement — and connects them with a community
+      navigating the same in-between space.
+    </p>
+    <div class="project-pills">
+      <span class="pill">Second-language readers</span>
+      <span class="pill">Book discovery</span>
+      <span class="pill">ADHD / Dyslexia</span>
+      <span class="pill">Social reading</span>
+    </div>
+    <a href="slides-shhelf.html" class="back-link" style="margin-top: 2rem;">
+      View presentation slides →
+    </a>
+  </div>
+  <div class="demo-preview">
+    <div class="demo-preview-bar">
+      <span class="demo-dot"></span>
+      <span class="demo-dot"></span>
+      <span class="demo-dot"></span>
+    </div>
+    <iframe src="https://hz2784.github.io/shh-elf/" loading="lazy"></iframe>
+    <a href="https://hz2784.github.io/shh-elf/" class="demo-preview-link" target="_blank">
+      Open full demo →
+    </a>
+  </div>
+</div>
+
+<!-- PROJECT CONTENT -->
+<div class="project-content">
+
+  <h2>The problem</h2>
+  <p>
+    Second-language readers face a unique version of the flow problem. In their first language,
+    reading is automatic — meaning arrives whole. In a second language, the evaluating mind
+    takes over: decoding words, tracking grammar, second-guessing comprehension. The result
+    is reading that feels like work, not discovery.
+  </p>
+  <p>
+    Existing book-recommendation systems don't account for this. They suggest books based on
+    genre or popularity, not on the reader's current language-flow threshold — the level at
+    which a book is absorbing but not overwhelming.
+  </p>
+
+  <h2>What Shh-elf does</h2>
+  <p>
+    Shh-elf matches readers to books calibrated to their language level and reading goals,
+    with features designed for the second-language reading experience:
+  </p>
+
+  <div class="feature-grid">
+    <div class="feature-cell">
+      <div class="feat-label">Flow-calibrated recommendations</div>
+      <div class="feat-sub">Books matched to your current language-flow threshold</div>
+    </div>
+    <div class="feature-cell">
+      <div class="feat-label">Community shelves</div>
+      <div class="feat-sub">Connect with readers navigating the same in-between space</div>
+    </div>
+    <div class="feature-cell">
+      <div class="feat-label">Reading format guidance</div>
+      <div class="feat-sub">Audio, print, or dual-channel — matched to your needs</div>
+    </div>
+    <div class="feature-cell">
+      <div class="feat-label">Progress without pressure</div>
+      <div class="feat-sub">Track pleasure and flow, not pages or speed</div>
+    </div>
+  </div>
+
+  <h2>Origin</h2>
+  <p>
+    Shh-elf grew out of my own experience as a second-language reader. At 16, I came to
+    the United States alone and lost the reading flow I'd had in Chinese. English came
+    word by word, the evaluating mind always running ahead of the feeling. It took years —
+    and the discovery of audiobooks — before I found an English flow state.
+  </p>
+  <p>
+    My master's thesis at Stanford became the foundation for Shh-elf: a tool built for
+    the readers I once was, and for the millions navigating that same in-between space
+    between languages.
+  </p>
+
+  <h2>Built for</h2>
+  <ul>
+    <li>Second-language readers seeking flow, not just comprehension</li>
+    <li>ESL / EFL learners who want to read for pleasure</li>
+    <li>Readers with ADHD or dyslexia navigating a new language</li>
+    <li>Educators designing reading programs for multilingual students</li>
+  </ul>
+
+  <a href="projects.html" class="back-link">
+    ← Back to all projects
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">&copy; 2025 &middot; Bibliotherapy &middot; Learning Design</span>
+  <span class="footer-mark">"access to my world, rather than access to the world" &mdash; Landy</span>
+</footer>
+
+</body>
+</html>

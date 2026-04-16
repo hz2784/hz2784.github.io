@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Bibliotherapy & Learning Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F7F3EB;
+  --cream-2: #EDE8DC;
+  --cream-3: #E3DDD1;
+  --forest: #1C3422;
+  --forest-mid: #2C4E35;
+  --forest-light: #3D6B49;
+  --amber: #B8782A;
+  --amber-light: #E8C485;
+  --amber-pale: #F5E6C8;
+  --terracotta: #8B4E38;
+  --ink: #1E1A14;
+  --ink-mid: #3D3830;
+  --ink-light: #6B6358;
+  --ink-pale: #9C9488;
+  --white: #FDFAF5;
+  --rule: rgba(30,26,20,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(247,243,235,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--rule);
+}
+.nav-logo {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mid);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--forest); }
+
+/* ── ABOUT ── */
+#about {
+  background: var(--forest);
+  padding: 8rem 3rem 6rem;
+}
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 5rem; align-items: start;
+}
+#about .section-label { color: var(--amber-light); }
+#about .section-label::before { background: var(--amber-light); }
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block; width: 22px; height: 1px;
+  background: var(--amber);
+}
+.about-tagline {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  font-weight: 400; line-height: 1.12;
+  color: var(--cream);
+}
+.about-tagline em { font-style: italic; color: var(--amber-light); }
+.about-body { color: rgba(237,232,220,0.82); font-size: 1rem; line-height: 1.8; }
+.about-body p + p { margin-top: 1.25rem; }
+.about-quote {
+  border-left: 2px solid var(--amber-light);
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.25rem;
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(237,232,220,0.85);
+  line-height: 1.65;
+}
+.about-quote span {
+  display: block;
+  margin-top: 6px;
+  font-family: 'Jost', sans-serif;
+  font-style: normal;
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: rgba(237,232,220,0.4);
+}
+.credentials {
+  margin-top: 2.5rem; display: flex; flex-direction: column; gap: 10px;
+}
+.cred-item {
+  display: flex; align-items: center; gap: 12px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.06em;
+  color: rgba(237,232,220,0.6);
+}
+.cred-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--amber-light); flex-shrink: 0;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--forest);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-left {
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 400; letter-spacing: 0.1em;
+  color: rgba(237,232,220,0.4);
+}
+.footer-mark {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 0.9rem; font-style: italic;
+  color: rgba(237,232,220,0.3);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  #about { padding: 6rem 1.5rem 4rem; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Reading&nbsp;as&nbsp;Practice</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">About</p>
+      <h2 class="about-tagline">
+        Reading is how<br>I learned to hear<br><em>what I already<br>knew.</em>
+      </h2>
+      <div class="credentials">
+        <div class="cred-item"><span class="cred-dot"></span> Zuntold — Bibliotherapy, London</div>
+        <div class="cred-item"><span class="cred-dot"></span> Stanford — Ed.M., Learning Design</div>
+        <div class="cred-item"><span class="cred-dot"></span> Columbia — Information Science + Comparative Literature</div>
+        <div class="cred-item"><span class="cred-dot"></span> Headspace · Stanford Life Design Lab</div>
+        <div class="cred-item"><span class="cred-dot"></span> Certified Health &amp; Wellness Coach</div>
+      </div>
+    </div>
+    <div class="about-body">
+      <p>
+        I believe reading is one of the few experiences that can dissolve self-consciousness.
+        When you enter deep flow with a demanding text, the evaluating mind falls away —
+        the part of you that monitors and edits and second-guesses. And in that quiet,
+        the unconscious begins to speak — through character, through image, through the
+        sudden recognition that something you've been carrying without knowing it
+        has finally found a form.
+      </p>
+      <p>
+        This is what I mean by bibliotherapy. Not self-help books. Not reading as
+        productivity. The kind of reading where something <em>loosens</em> — where
+        you close the book and you are not quite the same person who opened it,
+        though you can't say exactly why.
+      </p>
+      <p>
+        I grew up in Beijing's Haidian district, where every hour had to be useful
+        and math competitions were the measure of a serious mind. I found my escape
+        in <em>Children's Literature</em> magazine and the novels of Gu Shu — her
+        "secret-realm fiction," stories about ordinary kids who discover a hidden world
+        beneath the one everyone else accepts. I couldn't have told you then why I loved
+        them so much. I only knew I couldn't stop. That, I now understand, was the
+        detector beeping.
+      </p>
+      <p>
+        Years later, rereading <em>Night Maschiline</em>, I found this line:
+      </p>
+      <blockquote class="about-quote">
+        "Where there are people with hollows inside them, there are beasts.
+        Where there are beasts, there are hunters — and a market for the trade."
+        <span>— Gu Shu, <em>Night Maschiline</em></span>
+        <span style="display:block; margin-top:8px; font-size:9.5px; font-style:normal; letter-spacing:0.02em; color:rgba(237,232,220,0.35);">* Original Chinese: "有内心空洞的人，就有兽，有兽的存在，就有捕兽人和交易的市场。" —《夜色玛奇莲》</span>
+      </blockquote>
+      <p>
+        The beast the mysterious guardian hunts is not a monster. It is the repressed,
+        unintegrated content of the psyche — what Jung would call the Shadow.
+        I didn't know this when I was eight. I only knew I couldn't stop reading.
+        That is, I think, the truest evidence for everything I now study: the unconscious
+        recognized the archetype long before the conscious mind had language for it.
+        The book found me. I didn't find it.
+      </p>
+      <p>
+        At 16, I came to the United States alone. In English, I lost that space.
+        Chinese I had read in blocks — meaning arriving whole. English came word by word,
+        the evaluating mind always running ahead of the feeling. I read
+        <em>Steppenwolf</em> during those years and something cracked open anyway —
+        not because I understood it, but because Harry Haller's wolf named something
+        I'd been carrying without knowing it. <em>Your soul will not simplify.</em>
+        Hesse had said it better than I could.
+      </p>
+      <p>
+        After eye surgery, I began using audiobooks. Listening while reading, I found
+        an English flow state for the first time — and realized that what I'd been
+        struggling with might be language-sensitive. The barrier was never my mind.
+        It was the format.
+      </p>
+      <p>
+        I double-majored in Information Science and Comparative Literature at Columbia,
+        and talked my advisor into letting Python count as my third language requirement.
+        My master's thesis at Stanford became <em>Shh-elf</em>, a book-recommendation
+        app built for second-language readers. Now I work at Zuntold, a bibliotherapy
+        company in London — where I get to do this work properly, grounded in Jung,
+        Hillman, and Landy, and in the books that found me long before I had words
+        for any of this.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">&copy; 2025 &middot; Bibliotherapy &middot; Learning Design</span>
+  <span class="footer-mark">"access to my world, rather than access to the world" &mdash; Landy</span>
+</footer>
+
+</body>
+</html>
