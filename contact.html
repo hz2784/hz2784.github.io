@@ -81,8 +81,15 @@ nav {
 #contact {
   background: var(--cream-2);
   padding: 8rem 3rem 6rem;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5rem; align-items: start;
+}
+.contact-header {
+  margin-bottom: 3rem;
+}
+.contact-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
 }
 .contact-h2 {
   font-family: 'DM Serif Display', Georgia, serif;
@@ -160,13 +167,113 @@ footer {
 @media (max-width: 900px) {
   nav { padding: 1.1rem 1.5rem; }
   .nav-links { gap: 1.25rem; }
-  #contact { grid-template-columns: 1fr; gap: 3rem; padding: 6rem 1.5rem 4rem; }
+  #contact { padding: 6rem 1.5rem 4rem; }
+  .contact-columns { grid-template-columns: 1fr; gap: 3rem; }
 }
 
 @media (max-width: 600px) {
   nav { padding: 1rem 1.25rem; }
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 11px; }
+}
+
+/* ── SCENARIO BLIND BOX ── */
+.hero-scenarios { margin-bottom: 2rem; }
+.scenario-label {
+  font-family: 'Jost', sans-serif; font-size: 10.5px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-pale);
+  display: block; margin-bottom: 0.6rem;
+}
+.scenario-box {
+  display: flex; align-items: stretch; gap: 0;
+  border: 0.5px solid var(--rule); border-radius: 6px;
+  overflow: hidden; background: var(--white);
+}
+.scenario-card {
+  flex: 1; font-family: 'Lora', Georgia, serif; font-size: 0.95rem;
+  color: var(--forest); padding: 14px 18px; line-height: 1.5;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.scenario-card.flip-out { opacity: 0; transform: rotateX(90deg) scale(0.95); }
+.scenario-card.flip-in { animation: flip-in 0.35s ease forwards; }
+@keyframes flip-in {
+  0%   { opacity: 0; transform: rotateX(-90deg) scale(0.95); }
+  100% { opacity: 1; transform: rotateX(0) scale(1); }
+}
+.scenario-btn {
+  display: flex; align-items: center; gap: 6px; padding: 14px 18px;
+  background: rgba(28,52,34,0.04); border: none;
+  border-left: 0.5px solid var(--rule); cursor: pointer;
+  font-family: 'Jost', sans-serif; font-size: 11px; font-weight: 500;
+  letter-spacing: 0.06em; color: var(--ink-light);
+  transition: background 0.2s, color 0.2s; white-space: nowrap;
+}
+.scenario-btn:hover { background: rgba(28,52,34,0.1); color: var(--forest); }
+.btn-icon {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--amber); color: var(--white);
+  font-weight: 700; font-size: 13px; transition: transform 0.3s;
+}
+.scenario-btn:hover .btn-icon { transform: rotate(180deg) scale(1.1); }
+
+.elf-icon {
+  font-size: 1.2rem;
+  display: inline-block;
+  animation: elf-bounce 2.5s ease-in-out infinite;
+  margin-left: 4px;
+}
+@keyframes elf-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* ── FAQ ── */
+#faq {
+  background: var(--cream-2);
+  padding: 0 3rem 5rem;
+}
+.faq-list {
+  max-width: 680px;
+  margin-top: 1.5rem;
+}
+.faq-item {
+  border-bottom: 0.5px solid var(--rule);
+}
+.faq-q {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--ink-mid);
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: color 0.2s;
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q::after {
+  content: '+';
+  font-family: 'Jost', sans-serif;
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--amber);
+  flex-shrink: 0;
+  transition: transform 0.3s;
+}
+details[open] .faq-q::after {
+  transform: rotate(45deg);
+}
+.faq-q:hover { color: var(--forest-mid); }
+.faq-a {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  line-height: 1.75;
+  padding: 0 0 1.5rem 0;
+  max-width: 600px;
 }
 </style>
 </head>
@@ -185,11 +292,21 @@ footer {
 
 <!-- CONTACT -->
 <section id="contact">
+  <div class="contact-header">
+    <p class="section-label">Let's talk <span class="elf-icon">🧝</span></p>
+    <div class="hero-scenarios">
+      <span class="scenario-label">I can help you</span>
+      <div class="scenario-box" id="scenarioBox">
+        <span class="scenario-card" id="scenarioCard">Find the right book for your reader</span>
+        <button class="scenario-btn" id="scenarioBtn" aria-label="Next scenario">
+          <span class="btn-icon">?</span>
+          <span class="btn-text">Try another</span>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="contact-columns">
   <div>
-    <p class="section-label">Let's talk</p>
-    <h2 class="contact-h2">
-      Got a project,<br>a question,<br>or a <em>great book</em><br>recommendation?
-    </h2>
     <p class="contact-note">
       I'm open to collaborations, speaking engagements, and consulting work with
       schools, publishers, wellness organizations, and edtech teams.
@@ -230,6 +347,34 @@ footer {
       Send a note →
     </button>
   </form>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <p class="section-label">Frequently asked</p>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary class="faq-q">What's a typical engagement like?</summary>
+      <p class="faq-a">It really depends! Sometimes it's a one-off workshop for a bookstore or school. Other times it's more of an ongoing thing — designing a reading program, building a recommendation tool, consulting on accessibility. We'd just figure out what makes sense for your situation.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">How long does a project take?</summary>
+      <p class="faq-a">A workshop or event design is usually 1–2 weeks. Product stuff like app design or reading assessments tends to be more like 4–8 weeks. For bigger research projects, we'd scope it out together.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Do you work remotely?</summary>
+      <p class="faq-a">Yep! I work remotely and I'm happy to hop on a call whenever works for you. For in-person workshops or events, we can figure out logistics together.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">What exactly is bibliotherapy?</summary>
+      <p class="faq-a">Not self-help books. Not reading-as-productivity. It's the kind of reading where something loosens — you close the book and you're not quite the same person who opened it, though you can't say exactly why. I ground my practice in Jung, Hillman, and Landy.</p>
+    </details>
+    <details class="faq-item">
+      <summary class="faq-q">Can you help with dyslexia-specific design?</summary>
+      <p class="faq-a">Yes, absolutely — it's a huge part of what I do. I design reading experiences, interfaces, and programs for people with dyslexia and ADHD, drawing on research around flow states and long-form attention. Happy to chat about what you have in mind.</p>
+    </details>
+  </div>
 </section>
 
 <!-- FOOTER -->
@@ -238,5 +383,56 @@ footer {
   <span class="footer-mark">"access to my world, rather than access to the world" &mdash; Landy</span>
 </footer>
 
+<script>
+const scenarios = [
+  "Find the right book for your reader",
+  "Organize silent reading events for bookstores",
+  "Design dyslexia-friendly reading panels",
+  "Build a personalized reading curriculum",
+  "Create ADHD-friendly reading routines",
+  "Curate a bookshelf for a therapy practice",
+  "Design a cozy reading nook experience",
+  "Run a bibliotherapy workshop for teens",
+  "Develop accessible e-reader interfaces",
+  "Plan a \"slow reading\" retreat",
+  "Match reluctant readers with page-turners",
+  "Train staff on inclusive reading programs",
+  "Design sensory-friendly library spaces",
+  "Create a reading flow assessment tool",
+  "Build a book recommendation engine",
+];
+
+let seen = new Set();
+let currentIndex = 0;
+seen.add(0);
+
+const card = document.getElementById('scenarioCard');
+const btn = document.getElementById('scenarioBtn');
+
+card.textContent = scenarios[0];
+
+btn.addEventListener('click', () => {
+  card.classList.add('flip-out');
+  setTimeout(() => {
+    let pool = [];
+    for (let i = 0; i < scenarios.length; i++) {
+      if (!seen.has(i)) pool.push(i);
+    }
+    if (pool.length === 0) {
+      seen.clear();
+      for (let i = 0; i < scenarios.length; i++) {
+        if (i !== currentIndex) pool.push(i);
+      }
+    }
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    seen.add(pick);
+    currentIndex = pick;
+    card.textContent = scenarios[pick];
+    card.classList.remove('flip-out');
+    card.classList.add('flip-in');
+    setTimeout(() => card.classList.remove('flip-in'), 350);
+  }, 200);
+});
+</script>
 </body>
 </html>

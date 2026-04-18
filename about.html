@@ -157,6 +157,25 @@ footer {
   .nav-links { gap: 1rem; }
   .nav-links a { font-size: 11px; }
 }
+
+.cv-btn {
+  margin-top: 1.5rem;
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: rgba(237,232,220,0.7);
+  background: transparent;
+  border: 0.5px solid rgba(237,232,220,0.25);
+  padding: 10px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.cv-btn:hover {
+  color: var(--amber-light);
+  border-color: var(--amber-light);
+  background: rgba(232,196,133,0.08);
+}
 </style>
 </head>
 <body>
@@ -181,12 +200,13 @@ footer {
         Reading is how<br>I learned to hear<br><em>what I already<br>knew.</em>
       </h2>
       <div class="credentials">
-        <div class="cred-item"><span class="cred-dot"></span> Zuntold — Bibliotherapy, London</div>
-        <div class="cred-item"><span class="cred-dot"></span> Stanford — Ed.M., Learning Design</div>
-        <div class="cred-item"><span class="cred-dot"></span> Columbia — Information Science + Comparative Literature</div>
-        <div class="cred-item"><span class="cred-dot"></span> Headspace · Stanford Life Design Lab</div>
-        <div class="cred-item"><span class="cred-dot"></span> Certified Health &amp; Wellness Coach</div>
+        <div class="cred-item"><span class="cred-dot"></span> Stanford — M.S., Learning Design</div>
+        <div class="cred-item"><span class="cred-dot"></span> Columbia — Dual B.A., Information Science + Comparative Literature</div>
+        <div class="cred-item"><span class="cred-dot"></span> Certified Mental Health Coach (CMHC) · Headspace Training Institute</div>
       </div>
+      <button class="cv-btn" onclick="requestCV()">
+        Download CV ↓
+      </button>
     </div>
     <div class="about-body">
       <p>
@@ -263,5 +283,16 @@ footer {
   <span class="footer-mark">"access to my world, rather than access to the world" &mdash; Landy</span>
 </footer>
 
+<script>
+function requestCV() {
+  const pw = prompt('Enter password to download CV:');
+  if (pw === null) return;
+  if (pw === '159963') {
+    window.open('resume.pdf', '_blank');
+  } else {
+    alert('Incorrect password. Feel free to reach out to me for access!');
+  }
+}
+</script>
 </body>
 </html>

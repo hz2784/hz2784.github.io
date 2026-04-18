@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfolio — Bibliotherapy & Learning Design</title>
+<title>Haiyu — Learning Designer · Product Engineer · Bibliotherapist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -129,6 +129,171 @@ nav {
 }
 .hero-cta:hover { gap: 16px; color: var(--forest-mid); }
 .hero-cta svg { width: 14px; height: 14px; }
+
+/* ── ROLE TICKER ── */
+.hero-roles {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.25rem;
+  font-style: italic;
+  color: var(--ink-mid);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+.role-ticker {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  height: 1.5em;
+}
+.role-window {
+  display: flex;
+  flex-direction: column;
+  animation: role-scroll 10s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+.role-slide {
+  height: 1.5em;
+  display: flex;
+  align-items: center;
+  color: var(--terracotta);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@keyframes role-scroll {
+  0%, 18%   { transform: translateY(0); }
+  22%, 43%  { transform: translateY(-1.5em); }
+  47%, 68%  { transform: translateY(-3em); }
+  72%, 93%  { transform: translateY(-4.5em); }
+  97%, 100% { transform: translateY(-6em); }
+}
+
+.hero-desc em {
+  font-style: italic;
+  color: var(--terracotta);
+}
+
+/* ── SCENARIO BLIND BOX ── */
+.hero-scenarios {
+  margin-bottom: 2rem;
+}
+.scenario-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-pale);
+  display: block;
+  margin-bottom: 0.6rem;
+}
+.scenario-box {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 0.5px solid var(--rule);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--white);
+}
+.scenario-card {
+  flex: 1;
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--forest);
+  padding: 14px 18px;
+  line-height: 1.5;
+  transition: opacity 0.25s, transform 0.25s;
+}
+.scenario-card.flip-out {
+  opacity: 0;
+  transform: rotateX(90deg) scale(0.95);
+}
+.scenario-card.flip-in {
+  animation: flip-in 0.35s ease forwards;
+}
+@keyframes flip-in {
+  0%   { opacity: 0; transform: rotateX(-90deg) scale(0.95); }
+  100% { opacity: 1; transform: rotateX(0) scale(1); }
+}
+.scenario-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 18px;
+  background: rgba(28,52,34,0.04);
+  border: none;
+  border-left: 0.5px solid var(--rule);
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--ink-light);
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+.scenario-btn:hover {
+  background: rgba(28,52,34,0.1);
+  color: var(--forest);
+}
+.btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--white);
+  font-weight: 700;
+  font-size: 13px;
+  transition: transform 0.3s;
+}
+.scenario-btn:hover .btn-icon {
+  transform: rotate(180deg) scale(1.1);
+}
+.scenario-counter {
+  margin-top: 6px;
+  font-family: 'Jost', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-pale);
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.hero-elf {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  color: var(--ink-light);
+  transition: color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+.hero-elf:hover {
+  color: var(--forest);
+}
+.hero-elf:hover .elf-icon {
+  transform: scale(1.2) rotate(-8deg);
+}
+.elf-icon {
+  font-size: 1.4rem;
+  display: inline-block;
+  transition: transform 0.3s ease;
+  animation: elf-bounce 2.5s ease-in-out infinite;
+}
+@keyframes elf-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
 
 .hero-visual {
   display: flex; flex-direction: column;
@@ -605,24 +770,31 @@ footer {
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-text">
-    <p class="hero-eyebrow">Bibliotherapy &amp; Learning Design</p>
+    <p class="hero-eyebrow">Learning Design · Product · Bibliotherapy</p>
     <h1 class="hero-h1">
-      Reading is how<br>
-      we find the<br>
-      <em>yearning</em> of<br>
-      our soul.
+      Hi, I'm <em>Haiyu</em>.
     </h1>
+    <p class="hero-roles">I'm a <span class="role-ticker"><span class="role-window"><span class="role-slide">product engineer</span><span class="role-slide">bibliotherapist</span><span class="role-slide">reading experience designer</span><span class="role-slide">certified mental health coach</span><span class="role-slide">product engineer</span></span></span></p>
+    <p class="hero-desc">
+      I care deeply about pleasure reading, particularly for people with dyslexia and ADHD. My work explores reading as a way to regain long-form attention, and designs learning experiences that help people experience reading as a <em>flow experience</em>—one that feels absorbing, sustainable, and personally meaningful.    </p>
+
     <div class="hero-pull">
       <p>"A good novel helps me find out what I think about it. It gives me access to my world, rather than access to the world."</p>
       <cite>— Joshua Landy</cite>
     </div>
 
-    <a href="projects.html" class="hero-cta">
-      View my work
-      <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
-        <path d="M1 7h12M7 1l6 6-6 6"/>
-      </svg>
-    </a>
+    <div class="hero-actions">
+      <a href="projects.html" class="hero-cta">
+        View my work
+        <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1 7h12M7 1l6 6-6 6"/>
+        </svg>
+      </a>
+      <a href="contact.html" class="hero-elf" title="Say hi!">
+        <span class="elf-icon">🧝</span>
+        <span class="elf-text">Talk to me</span>
+      </a>
+    </div>
   </div>
 
   <div class="hero-visual">
@@ -638,9 +810,18 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-left">© 2025 · Bibliotherapy · Learning Design</span>
+  <span class="footer-left">© 2025 · Haiyu · Learning Design</span>
   <span class="footer-mark">"access to my world, rather than access to the world" — Landy</span>
 </footer>
 
 <script>
-const observer = new Intersecti
+// ── Fade-up observer ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
