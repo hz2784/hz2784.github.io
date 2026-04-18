@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reading Workshops — Bibliotherapy & Learning Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F7F3EB;
+  --cream-2: #EDE8DC;
+  --cream-3: #E3DDD1;
+  --forest: #1C3422;
+  --forest-mid: #2C4E35;
+  --forest-light: #3D6B49;
+  --amber: #B8782A;
+  --amber-light: #E8C485;
+  --amber-pale: #F5E6C8;
+  --terracotta: #8B4E38;
+  --ink: #1E1A14;
+  --ink-mid: #3D3830;
+  --ink-light: #6B6358;
+  --ink-pale: #9C9488;
+  --white: #FDFAF5;
+  --rule: rgba(30,26,20,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(247,243,235,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--rule);
+}
+.nav-logo {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mid);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--forest); }
+
+/* ── SECTION SHELL ── */
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block; width: 22px; height: 1px;
+  background: var(--amber);
+}
+
+/* ── PROJECT HERO ── */
+.project-hero {
+  padding: 9rem 3rem 4rem;
+  max-width: 780px;
+}
+.project-hero h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--forest);
+  line-height: 1.12;
+  margin-bottom: 1.5rem;
+}
+.subtitle {
+  font-size: 1.05rem; color: var(--ink-mid);
+  line-height: 1.75; margin-bottom: 1.5rem;
+}
+.project-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 99px;
+  border: 0.5px solid var(--rule); color: var(--ink-light);
+  background: transparent;
+}
+
+/* ── PROJECT CONTENT ── */
+.project-content {
+  max-width: 780px;
+  padding: 0 3rem 5rem;
+}
+.project-content h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.6rem; color: var(--forest);
+  margin-top: 3rem; margin-bottom: 1rem;
+}
+.project-content p {
+  font-size: 1rem; color: var(--ink-mid);
+  line-height: 1.8; margin-bottom: 1.25rem;
+}
+.project-content ul {
+  margin: 0.75rem 0 1.25rem 1.5rem;
+  color: var(--ink-mid);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.project-content li { margin-bottom: 0.4rem; }
+
+/* ── WORKSHOP CARDS ── */
+.workshop-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5px; background: var(--rule);
+  margin: 1.5rem 0 2rem;
+}
+.workshop-cell {
+  background: var(--cream);
+  padding: 1.5rem;
+  transition: background 0.2s;
+}
+.workshop-cell:hover { background: var(--white); }
+.ws-label {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; color: var(--forest);
+  margin-bottom: 4px;
+}
+.ws-context {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 6px;
+}
+.ws-sub {
+  font-family: 'Lora', serif; font-size: 12px;
+  color: var(--ink-light); line-height: 1.6;
+}
+
+/* ── BACK LINK ── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--forest); text-decoration: none;
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 3px;
+  margin-top: 3rem;
+  transition: gap 0.2s;
+}
+.back-link:hover { gap: 14px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--forest);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-left {
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 400; letter-spacing: 0.1em;
+  color: rgba(237,232,220,0.4);
+}
+.footer-mark {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 0.9rem; font-style: italic;
+  color: rgba(237,232,220,0.3);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .project-hero { padding: 7rem 1.5rem 3rem; }
+  .project-content { padding: 0 1.5rem 4rem; }
+  .workshop-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Reading&nbsp;as&nbsp;Practice</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- PROJECT HERO -->
+<div class="project-hero">
+  <p class="section-label">Workshop Series</p>
+  <h1>Reading Workshops</h1>
+  <p class="subtitle">
+    Designed and facilitated reading experiences across contexts — from bibliotherapy
+    workshops at Headspace to a silent readathon at Stanford Life Design Lab. Each one creates
+    space for slow, intentional reading and the kind of self-discovery that happens when
+    you stop performing comprehension.
+  </p>
+  <div class="project-pills">
+    <span class="pill">Headspace</span>
+    <span class="pill">Stanford Life Design</span>
+    <span class="pill">Bibliotherapy</span>
+    <span class="pill">Silent Reading</span>
+  </div>
+</div>
+
+<!-- PROJECT CONTENT -->
+<div class="project-content">
+
+  <h2>Headspace Bibliotherapy Workshop</h2>
+  <p>
+    A workshop series developed during my time at Headspace, bringing together mindfulness
+    practice and bibliotherapy. Participants engaged with carefully selected literary passages —
+    reading the same text multiple times with different intentions: for content, for feeling,
+    for surprise.
+  </p>
+  <p>
+    The workshops drew on Lectio Divina and Jungian approaches to reading — treating the text
+    not as information to extract, but as a mirror that reveals something about the reader.
+    The goal was never "what does this mean?" but "what does this stir?"
+  </p>
+
+  <h2>Stanford Life Design Silent Readathon</h2>
+  <p>
+    A silent reading event designed for the Stanford Life Design Lab community. The idea
+    was simple: create a shared space where people read together in silence — no discussion,
+    no performance, just presence. Participants brought their own books and read for a
+    sustained period, surrounded by others doing the same.
+  </p>
+  <p>
+    The readathon was designed around the insight that reading alone can feel like
+    avoidance, but reading together — silently — feels like permission. For people who
+    struggle with long-form attention, the social container makes it easier to stay.
+  </p>
+
+  <div class="workshop-grid">
+    <div class="workshop-cell">
+      <div class="ws-context">Headspace</div>
+      <div class="ws-label">Bibliotherapy Workshop</div>
+      <div class="ws-sub">Mindfulness meets literature — reading as a contemplative practice</div>
+    </div>
+    <div class="workshop-cell">
+      <div class="ws-context">Stanford</div>
+      <div class="ws-label">Silent Readathon</div>
+      <div class="ws-sub">Communal silent reading for sustained attention and permission to slow down</div>
+    </div>
+  </div>
+
+  <h2>What I learned</h2>
+  <p>
+    The most consistent feedback across both formats: "I forgot I was supposed to be
+    doing something." That's flow. People came expecting a program and found themselves
+    simply reading — absorbed, unhurried, surprised by how long they stayed.
+  </p>
+  <p>
+    These workshops confirmed something I'd suspected: the biggest barrier to pleasure
+    reading isn't time or interest — it's the absence of a space that treats reading as
+    something worth protecting.
+  </p>
+
+  <a href="projects.html" class="back-link">
+    ← Back to all projects
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">&copy; 2025 &middot; Bibliotherapy &middot; Learning Design</span>
+  <span class="footer-mark">"access to my world, rather than access to the world" &mdash; Landy</span>
+</footer>
+
+</body>
+</html>

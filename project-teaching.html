@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teaching Literature & Reading — Bibliotherapy & Learning Design</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Serif+Display:ital@0;1&family=Lora:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cream: #F7F3EB;
+  --cream-2: #EDE8DC;
+  --cream-3: #E3DDD1;
+  --forest: #1C3422;
+  --forest-mid: #2C4E35;
+  --forest-light: #3D6B49;
+  --amber: #B8782A;
+  --amber-light: #E8C485;
+  --amber-pale: #F5E6C8;
+  --terracotta: #8B4E38;
+  --ink: #1E1A14;
+  --ink-mid: #3D3830;
+  --ink-light: #6B6358;
+  --ink-pale: #9C9488;
+  --white: #FDFAF5;
+  --rule: rgba(30,26,20,0.12);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--cream);
+  color: var(--ink);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 1.25rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(247,243,235,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--rule);
+}
+.nav-logo {
+  font-family: 'Jost', sans-serif;
+  font-weight: 400; font-size: 13px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--ink-mid);
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; }
+.nav-links a {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 400; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--ink-light);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--forest); }
+
+/* ── SECTION SHELL ── */
+.section-label {
+  font-family: 'Jost', sans-serif;
+  font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--amber);
+  margin-bottom: 1.25rem;
+  display: flex; align-items: center; gap: 10px;
+}
+.section-label::before {
+  content: '';
+  display: inline-block; width: 22px; height: 1px;
+  background: var(--amber);
+}
+
+/* ── PROJECT HERO ── */
+.project-hero {
+  padding: 9rem 3rem 4rem;
+  max-width: 780px;
+}
+.project-hero h1 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--forest);
+  line-height: 1.12;
+  margin-bottom: 1.5rem;
+}
+.subtitle {
+  font-size: 1.05rem; color: var(--ink-mid);
+  line-height: 1.75; margin-bottom: 1.5rem;
+}
+.project-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.pill {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 99px;
+  border: 0.5px solid var(--rule); color: var(--ink-light);
+  background: transparent;
+}
+
+/* ── PROJECT CONTENT ── */
+.project-content {
+  max-width: 780px;
+  padding: 0 3rem 5rem;
+}
+.project-content h2 {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.6rem; color: var(--forest);
+  margin-top: 3rem; margin-bottom: 1rem;
+}
+.project-content p {
+  font-size: 1rem; color: var(--ink-mid);
+  line-height: 1.8; margin-bottom: 1.25rem;
+}
+.project-content ul {
+  margin: 0.75rem 0 1.25rem 1.5rem;
+  color: var(--ink-mid);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+.project-content li { margin-bottom: 0.4rem; }
+
+/* ── TEACHING CARDS ── */
+.teaching-grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5px; background: var(--rule);
+  margin: 1.5rem 0 2rem;
+}
+.teaching-cell {
+  background: var(--cream);
+  padding: 1.5rem;
+  transition: background 0.2s;
+}
+.teaching-cell:hover { background: var(--white); }
+.tc-context {
+  font-family: 'Jost', sans-serif; font-size: 10px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--amber); margin-bottom: 6px;
+}
+.tc-label {
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; color: var(--forest);
+  margin-bottom: 4px;
+}
+.tc-sub {
+  font-family: 'Lora', serif; font-size: 12px;
+  color: var(--ink-light); line-height: 1.6;
+}
+
+/* ── BACK LINK ── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Jost', sans-serif; font-size: 12px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--forest); text-decoration: none;
+  border-bottom: 1px solid var(--forest);
+  padding-bottom: 3px;
+  margin-top: 3rem;
+  transition: gap 0.2s;
+}
+.back-link:hover { gap: 14px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--forest);
+  padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-left {
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 400; letter-spacing: 0.1em;
+  color: rgba(237,232,220,0.4);
+}
+.footer-mark {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 0.9rem; font-style: italic;
+  color: rgba(237,232,220,0.3);
+}
+
+@media (max-width: 900px) {
+  nav { padding: 1.1rem 1.5rem; }
+  .nav-links { gap: 1.25rem; }
+  .project-hero { padding: 7rem 1.5rem 3rem; }
+  .project-content { padding: 0 1.5rem 4rem; }
+  .teaching-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  nav { padding: 1rem 1.25rem; }
+  .nav-links { gap: 1rem; }
+  .nav-links a { font-size: 11px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Reading&nbsp;as&nbsp;Practice</a>
+  <div class="nav-links">
+    <a href="about.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="research.html">Research</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</nav>
+
+<!-- PROJECT HERO -->
+<div class="project-hero">
+  <p class="section-label">Teaching</p>
+  <h1>Teaching Literature &amp; Reading</h1>
+  <p class="subtitle">
+    Taught literature at Columbia's undergraduate symposium and Stanford's Great Books program.
+    Also worked as an IB/AP Literature tutor — helping students find their own relationship
+    with texts, not just the "right" interpretation.
+  </p>
+  <div class="project-pills">
+    <span class="pill">Columbia Symposium</span>
+    <span class="pill">Stanford Great Books</span>
+    <span class="pill">IB / AP Literature</span>
+    <span class="pill">Tutoring</span>
+  </div>
+</div>
+
+<!-- PROJECT CONTENT -->
+<div class="project-content">
+
+  <div class="teaching-grid">
+    <div class="teaching-cell">
+      <div class="tc-context">Columbia</div>
+      <div class="tc-label">Undergraduate Symposium</div>
+      <div class="tc-sub">Led discussions on comparative literature and close reading at the undergraduate level</div>
+    </div>
+    <div class="teaching-cell">
+      <div class="tc-context">Stanford</div>
+      <div class="tc-label">Great Books Program</div>
+      <div class="tc-sub">Facilitated seminars on canonical and contemporary texts through a bibliotherapeutic lens</div>
+    </div>
+    <div class="teaching-cell">
+      <div class="tc-context">Private</div>
+      <div class="tc-label">IB / AP Literature Tutor</div>
+      <div class="tc-sub">One-on-one tutoring focused on literary analysis, essay writing, and developing a personal reading voice</div>
+    </div>
+  </div>
+
+  <h2>Columbia Undergraduate Symposium</h2>
+  <p>
+    At Columbia, I taught in the undergraduate symposium — leading discussions that brought
+    together texts from different literary traditions. The focus was always on what happens
+    between the reader and the text, not on arriving at a predetermined interpretation.
+  </p>
+  <p>
+    I was drawn to the moments when a student would say something like "I don't know why
+    this passage bothers me" — because that's where the real reading begins. The discomfort
+    is the signal. My job was to help them stay with it long enough to hear what it was saying.
+  </p>
+
+  <h2>Stanford Great Books Program</h2>
+  <p>
+    At Stanford, I facilitated seminars in the Great Books program — reading canonical texts
+    alongside contemporary work, always asking: what does this text want from you? Not what
+    does it mean in the abstract, but what does it stir, challenge, or reveal in you specifically?
+  </p>
+  <p>
+    This is where my bibliotherapy training and my literature training converged. A great
+    seminar, like a great therapy session, creates the conditions for something to surface
+    that wasn't accessible before.
+  </p>
+
+  <h2>IB / AP Literature Tutoring</h2>
+  <p>
+    Working one-on-one with high school students preparing for IB and AP Literature exams.
+    The goal was never just exam prep — it was helping students develop their own reading
+    voice. How do you write about a text you genuinely care about? How do you trust your
+    own response?
+  </p>
+  <p>
+    Many of these students had been trained to look for "the right answer" in literature.
+    My work was to unteach that habit — to show them that their confusion, their emotional
+    response, their half-formed hunches are the raw material of real literary thinking.
+  </p>
+
+  <a href="projects.html" class="back-link">
+    ← Back to all projects
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-left">&copy; 2025 &middot; Bibliotherapy &middot; Learning Design</span>
+  <span class="footer-mark">"access to my world, rather than access to the world" &mdash; Landy</span>
+</footer>
+
+</body>
+</html>

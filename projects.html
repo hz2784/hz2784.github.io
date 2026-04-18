@@ -136,6 +136,14 @@ section { padding: 6rem 3rem; }
   transition: opacity 0.2s, transform 0.2s;
   color: var(--amber); font-size: 1.2rem;
 }
+.project-more {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Jost', sans-serif; font-size: 11px;
+  font-weight: 500; letter-spacing: 0.06em;
+  color: var(--amber); margin-top: 0.75rem;
+  transition: gap 0.2s;
+}
+.project-card:hover .project-more { gap: 12px; }
 
 /* ── FOOTER ── */
 footer {
@@ -214,7 +222,7 @@ footer {
         <span class="pill">Evidence Review</span>
         <span class="pill">Flow Theory</span>
       </div>
-      <span class="project-arrow">→</span>
+      <span class="project-more">See more →</span>
     </a>
 
     <a href="project-shhelf.html" class="project-card fade-up" style="transition-delay:0.1s; text-decoration:none; color:inherit;" id="proj-shh-elf">
@@ -233,45 +241,45 @@ footer {
         <span class="pill">ADHD / Dyslexia</span>
         <span class="pill">Social reading</span>
       </div>
-      <span class="project-arrow">→</span>
+      <span class="project-more">See more →</span>
     </a>
 
-    <div class="project-card fade-up" style="transition-delay:0.15s" id="proj-workshop">
+    <a href="project-workshop.html" class="project-card fade-up" style="transition-delay:0.15s; text-decoration:none; color:inherit;" id="proj-workshop">
       <span class="project-tag tag-workshop">● Workshop Series</span>
       <span class="project-num">03</span>
-      <h3 class="project-title">Slow Reading Circles</h3>
+      <h3 class="project-title">Reading Workshops</h3>
       <p class="project-body">
-        A community reading practice inspired by Lectio Divina and mindfulness pedagogy.
-        Participants read the same short passage three times with different intentions:
-        for content, for feeling, for surprise. Developed during my time at Headspace.
+        Designed and facilitated reading experiences across contexts — from bibliotherapy
+        workshops at Headspace to a silent readathon at Stanford Life Design Lab. Each workshop
+        creates space for slow, intentional reading and the kind of self-discovery
+        that happens when you stop performing comprehension.
       </p>
       <div class="project-pills">
-        <span class="pill">Mindfulness</span>
-        <span class="pill">Community</span>
-        <span class="pill">Facilitation</span>
-        <span class="pill">Slow Pedagogy</span>
-      </div>
-      <span class="project-arrow">→</span>
-    </div>
-
-    <div class="project-card fade-up" style="transition-delay:0.2s" id="proj-teaching">
-      <span class="project-tag tag-design">● Teaching Practice</span>
-      <span class="project-num">04</span>
-      <h3 class="project-title">Literature for the 16-Year-Old I Was</h3>
-      <p class="project-body">
-        Working with middle and high school students on reading and writing — offering what
-        I once needed and couldn't find: a space where literature matters, where curiosity
-        isn't impractical, and where students learn that their voice has value.
-        In many ways, this is my way of reaching back.
-      </p>
-      <div class="project-pills">
-        <span class="pill">Middle / High School</span>
+        <span class="pill">Headspace</span>
+        <span class="pill">Stanford Life Design</span>
         <span class="pill">Bibliotherapy</span>
-        <span class="pill">Voice &amp; identity</span>
-        <span class="pill">First-gen students</span>
+        <span class="pill">Silent Reading</span>
       </div>
-      <span class="project-arrow">→</span>
-    </div>
+      <span class="project-more">See more →</span>
+    </a>
+
+    <a href="project-teaching.html" class="project-card fade-up" style="transition-delay:0.2s; text-decoration:none; color:inherit;" id="proj-teaching">
+      <span class="project-tag tag-design">● Teaching</span>
+      <span class="project-num">04</span>
+      <h3 class="project-title">Teaching Literature &amp; Reading</h3>
+      <p class="project-body">
+        Taught literature at Columbia's undergraduate symposium and Stanford's Great Books program.
+        Also worked as an IB/AP Literature tutor — helping students find their own relationship
+        with texts, not just the "right" interpretation.
+      </p>
+      <div class="project-pills">
+        <span class="pill">Columbia Symposium</span>
+        <span class="pill">Stanford Great Books</span>
+        <span class="pill">IB / AP Literature</span>
+        <span class="pill">Tutoring</span>
+      </div>
+      <span class="project-more">See more →</span>
+    </a>
 
   </div>
 </section>
