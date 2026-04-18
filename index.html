@@ -775,8 +775,20 @@ footer {
       Hi, I'm <em>Haiyu</em>.
     </h1>
     <p class="hero-roles">I'm a <span class="role-ticker"><span class="role-window"><span class="role-slide">product engineer</span><span class="role-slide">bibliotherapist</span><span class="role-slide">reading experience designer</span><span class="role-slide">certified mental health coach</span><span class="role-slide">product engineer</span></span></span></p>
+    <div class="hero-scenarios">
+      <span class="scenario-label">I can help you</span>
+      <div class="scenario-box" id="scenarioBox">
+        <span class="scenario-card" id="scenarioCard">Find the right book for your reader</span>
+        <button class="scenario-btn" id="scenarioBtn" aria-label="Next scenario">
+          <span class="btn-icon">?</span>
+          <span class="btn-text">Try another</span>
+        </button>
+      </div>
+    </div>
+
     <p class="hero-desc">
-      I care deeply about pleasure reading, particularly for people with dyslexia and ADHD. My work explores reading as a way to regain long-form attention, and designs learning experiences that help people experience reading as a <em>flow experience</em>—one that feels absorbing, sustainable, and personally meaningful.    </p>
+      I care deeply about pleasure reading, particularly for people with dyslexia and ADHD. My work explores reading as a way to regain long-form attention, and designs learning experiences that help people experience reading as a <em>flow experience</em>—one that feels absorbing, sustainable, and personally meaningful.
+    </p>
 
     <div class="hero-pull">
       <p>"A good novel helps me find out what I think about it. It gives me access to my world, rather than access to the world."</p>
@@ -815,6 +827,56 @@ footer {
 </footer>
 
 <script>
+// ── Scenario blind box ──
+const scenarios = [
+  "Find the right book for your reader",
+  "Organize silent reading events for bookstores",
+  "Design dyslexia-friendly reading panels",
+  "Build a personalized reading curriculum",
+  "Create ADHD-friendly reading routines",
+  "Curate a bookshelf for a therapy practice",
+  "Design a cozy reading nook experience",
+  "Run a bibliotherapy workshop for teens",
+  "Develop accessible e-reader interfaces",
+  "Plan a \"slow reading\" retreat",
+  "Match reluctant readers with page-turners",
+  "Train staff on inclusive reading programs",
+  "Design sensory-friendly library spaces",
+  "Create a reading flow assessment tool",
+  "Build a book recommendation engine",
+];
+
+let seen = new Set();
+let currentIndex = 0;
+seen.add(0);
+
+const card = document.getElementById('scenarioCard');
+const btn = document.getElementById('scenarioBtn');
+card.textContent = scenarios[0];
+
+btn.addEventListener('click', () => {
+  card.classList.add('flip-out');
+  setTimeout(() => {
+    let pool = [];
+    for (let i = 0; i < scenarios.length; i++) {
+      if (!seen.has(i)) pool.push(i);
+    }
+    if (pool.length === 0) {
+      seen.clear();
+      for (let i = 0; i < scenarios.length; i++) {
+        if (i !== currentIndex) pool.push(i);
+      }
+    }
+    const pick = pool[Math.floor(Math.random() * pool.length)];
+    seen.add(pick);
+    currentIndex = pick;
+    card.textContent = scenarios[pick];
+    card.classList.remove('flip-out');
+    card.classList.add('flip-in');
+    setTimeout(() => card.classList.remove('flip-in'), 350);
+  }, 200);
+});
+
 // ── Fade-up observer ──
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => {
