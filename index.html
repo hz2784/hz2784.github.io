@@ -726,6 +726,316 @@ footer {
   color: rgba(237,232,220,0.3);
 }
 
+/* ── INTRO OVERLAY — Bookshelf ── */
+.intro-overlay {
+  position: fixed; inset: 0; z-index: 9999;
+  display: flex; align-items: center; justify-content: center;
+  background: #1a1612;
+  transition: opacity 0.8s ease;
+}
+.intro-overlay.fade-out { opacity: 0; pointer-events: none; }
+
+.intro-shelf {
+  display: flex; align-items: flex-end; gap: 6px;
+  padding: 0 2rem 0;
+  position: relative;
+}
+/* Shelf plank */
+.intro-shelf::after {
+  content: '';
+  position: absolute; bottom: -8px; left: -20px; right: -20px;
+  height: 8px;
+  background: linear-gradient(to bottom, #5c4a3a, #3d3028);
+  border-radius: 0 0 2px 2px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+.intro-shelf::before {
+  content: '';
+  position: absolute; bottom: 0; left: -20px; right: -20px;
+  height: 3px;
+  background: linear-gradient(to bottom, #7a6452, #5c4a3a);
+  z-index: 1;
+}
+
+.shelf-book {
+  border-radius: 2px 2px 0 0;
+  display: flex; align-items: center; justify-content: center;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.3);
+  text-decoration: none;
+}
+.shelf-book:hover {
+  transform: translateY(-10px);
+  box-shadow: 2px 6px 18px rgba(0,0,0,0.4);
+}
+.shelf-book span {
+  font-family: 'Jost', sans-serif; font-size: 9px;
+  font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+  white-space: nowrap;
+  transform: rotate(180deg);
+}
+/* Spine groove */
+.shelf-book::before {
+  content: '';
+  position: absolute; left: 2px; top: 8px; bottom: 8px; width: 1px;
+  background: rgba(0,0,0,0.12);
+}
+.shelf-book::after {
+  content: '';
+  position: absolute; right: 2px; top: 8px; bottom: 8px; width: 1px;
+  background: rgba(255,255,255,0.06);
+}
+
+.sb1 { width: 38px; height: 180px; background: var(--forest); }
+.sb1 span { color: rgba(245,230,200,0.85); }
+.sb2 { width: 32px; height: 160px; background: var(--amber); }
+.sb2 span { color: rgba(255,248,230,0.9); }
+.sb3 { width: 36px; height: 170px; background: var(--cream-3); }
+.sb3 span { color: var(--forest-mid); }
+.sb4 { width: 30px; height: 150px; background: var(--terracotta); }
+.sb4 span { color: rgba(253,250,245,0.85); }
+
+/* The portfolio book — special */
+.sb-portfolio {
+  width: 42px; height: 190px;
+  background: var(--forest-mid);
+  cursor: pointer;
+  z-index: 2;
+}
+.sb-portfolio span {
+  color: var(--amber-light);
+  font-size: 10px; letter-spacing: 0.14em;
+}
+.sb-portfolio:hover {
+  transform: translateY(-12px);
+  box-shadow: 2px 6px 20px rgba(0,0,0,0.4);
+}
+.sb-portfolio.pulled {
+  transform: translateY(-60px);
+  box-shadow: 2px 10px 30px rgba(0,0,0,0.5);
+}
+
+.sb5 { width: 34px; height: 165px; background: var(--ink-light); }
+.sb5 span { color: rgba(245,230,200,0.8); }
+.sb6 { width: 34px; height: 155px; background: var(--forest-light); }
+.sb6 span { color: rgba(245,230,200,0.8); }
+
+/* Book cover display after pull */
+.intro-cover-wrap {
+  position: fixed; inset: 0; z-index: 10000;
+  display: flex; align-items: center; justify-content: center;
+  background: #1a1612;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+.intro-cover-wrap.active { opacity: 1; pointer-events: auto; }
+.intro-cover-wrap.fade-out { opacity: 0; pointer-events: none; }
+.intro-book-wrap {
+  width: 280px; height: 400px;
+  position: relative;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0, 0.2, 1);
+}
+.intro-book-wrap.flipping {
+  perspective: 1200px;
+}
+.intro-cover-wrap.active .intro-book-wrap {
+  opacity: 1;
+  transform: scale(1);
+}
+.intro-cover {
+  position: absolute; inset: 0;
+  width: 280px; height: 400px;
+  background:
+    url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='6' height='6' fill='%232C4E35'/%3E%3Crect x='0' y='0' width='3' height='3' fill='%232B4D34' opacity='0.5'/%3E%3Crect x='3' y='3' width='3' height='3' fill='%232D5036' opacity='0.5'/%3E%3C/svg%3E"),
+    linear-gradient(135deg, #2a4a32 0%, var(--forest-mid) 40%, #325a3e 100%);
+  border-radius: 2px 8px 8px 2px;
+  padding: 3rem 2.5rem;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 8px 8px 30px rgba(0,0,0,0.5);
+  z-index: 2;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  transition: transform 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+/* Linen texture overlay */
+.intro-cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 2px 8px 8px 2px;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(255,255,255,0.015) 1px,
+    rgba(255,255,255,0.015) 2px
+  ),
+  repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 1px,
+    rgba(255,255,255,0.01) 1px,
+    rgba(255,255,255,0.01) 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+/* Hover: slight lift before clicking */
+.intro-cover:hover {
+  transform: rotateY(-8deg) translateZ(5px);
+  box-shadow: 12px 8px 35px rgba(0,0,0,0.6);
+}
+/* Hide front text when flipped, show back panel */
+.intro-cover > * {
+  backface-visibility: hidden;
+}
+.intro-cover-back {
+  position: absolute; inset: 0;
+  background: var(--forest-mid);
+  border-radius: 2px 8px 8px 2px;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+.intro-book-wrap.flipping .intro-cover {
+  transform: rotateY(-150deg);
+}
+.intro-book-wrap.flipping .intro-cover:hover {
+  transform: rotateY(-150deg);
+}
+/* Paper page edges — right side thickness */
+.intro-book-pages-edge {
+  position: absolute;
+  top: 3px; bottom: 3px; right: -6px;
+  width: 6px;
+  z-index: 1;
+  border-radius: 0 2px 2px 0;
+  background:
+    linear-gradient(to right,
+      #d4cfc4 0px, #e8e3d8 1px,
+      #ddd8cc 1px, #ece7dc 2px,
+      #d8d3c7 2px, #eae5da 3px,
+      #dcd7cb 3px, #e6e1d6 4px,
+      #d6d1c5 4px, #e4dfd4 5px,
+      #dad5c9 5px, #e8e3d8 6px
+    );
+  box-shadow: 2px 0 4px rgba(0,0,0,0.15);
+}
+/* Bookmark ribbon */
+.intro-bookmark {
+  position: absolute;
+  top: 0; right: 50px;
+  width: 12px; height: 70px;
+  background: var(--terracotta);
+  z-index: 3;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 82%, 0 100%);
+  box-shadow: 1px 2px 4px rgba(0,0,0,0.2);
+}
+/* Page underneath the cover */
+.intro-book-page {
+  position: absolute; inset: 0;
+  width: 280px; height: 400px;
+  background: var(--cream);
+  border-radius: 2px 8px 8px 2px;
+  box-shadow: inset 2px 0 8px rgba(0,0,0,0.06);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+}
+.intro-book-page span {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 1.1rem; font-style: italic;
+  color: var(--ink-pale);
+}
+.intro-cover-spine-edge {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 10px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 2px 0 0 2px;
+}
+.intro-cover-line {
+  width: 30px; height: 1px;
+  background: var(--amber-light);
+  margin-bottom: 1rem;
+}
+.intro-cover-sub {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: rgba(212,168,75,0.6);
+  margin-bottom: 0.5rem;
+}
+.intro-cover-title {
+  font-family: 'DM Serif Display', Georgia, serif;
+  font-size: 2rem; line-height: 1.2;
+  background: linear-gradient(135deg, #e8c485 0%, #f5e1b5 25%, #d4a84b 50%, #f0d48a 75%, #c99a3a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.intro-cover-title em {
+  font-style: italic;
+}
+.intro-cover-bottom {
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.intro-cover-desc {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.75rem; font-style: italic;
+  color: rgba(237,232,220,0.5);
+  line-height: 1.6;
+}
+.intro-cover-year {
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; letter-spacing: 0.12em;
+  color: rgba(237,232,220,0.3);
+}
+
+.intro-shelf-hint {
+  position: absolute; bottom: -3.5rem; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Jost', sans-serif;
+  font-size: 10px; letter-spacing: 0.1em;
+  color: rgba(237,232,220,0.3);
+  animation: hint-pulse 2s ease-in-out infinite;
+  white-space: nowrap;
+}
+@keyframes hint-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+/* Main content hidden during intro */
+body.intro-active nav,
+body.intro-active .hero,
+body.intro-active footer { opacity: 0; }
+body.intro-done nav { animation: nav-reveal 0.6s ease 0.2s forwards; opacity: 0; }
+body.intro-done .hero-text > * {
+  animation: content-reveal 0.7s ease forwards;
+  opacity: 0;
+}
+body.intro-done .hero-eyebrow { animation-delay: 0.05s; }
+body.intro-done .hero-h1 { animation-delay: 0.15s; }
+body.intro-done .hero-roles { animation-delay: 0.25s; }
+body.intro-done .hero-scenarios { animation-delay: 0.35s; }
+body.intro-done .hero-desc { animation-delay: 0.45s; }
+body.intro-done .hero-pull { animation-delay: 0.55s; }
+body.intro-done .hero-actions { animation-delay: 0.65s; }
+body.intro-done .hero-visual { animation: content-reveal 0.8s ease 0.2s forwards; opacity: 0; }
+body.intro-done footer { animation: content-reveal 0.6s ease 0.7s forwards; opacity: 0; }
+@keyframes nav-reveal {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes content-reveal {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 /* ── ANIMATIONS ── */
 .fade-up {
   opacity: 1; transform: translateY(0);
@@ -756,7 +1066,43 @@ footer {
 }
 </style>
 </head>
-<body>
+<body class="intro-active">
+
+<!-- INTRO: Book Cover Display -->
+<div class="intro-cover-wrap" id="introCoverWrap">
+  <div class="intro-book-wrap">
+    <div class="intro-book-page"><span>Welcome</span></div>
+    <div class="intro-book-pages-edge"></div>
+    <div class="intro-cover" id="introCover">
+      <div class="intro-bookmark"></div>
+      <div class="intro-cover-back"></div>
+      <div class="intro-cover-spine-edge"></div>
+      <div>
+        <div class="intro-cover-line"></div>
+        <p class="intro-cover-sub">A Portfolio by</p>
+        <h2 class="intro-cover-title">Haiyu<br><em>Zhang</em></h2>
+      </div>
+      <div class="intro-cover-bottom">
+        <p class="intro-cover-desc">Learning Design · Product · Bibliotherapy</p>
+        <span class="intro-cover-year">2025</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO: Bookshelf -->
+<div class="intro-overlay" id="introOverlay">
+  <div class="intro-shelf" id="introShelf">
+    <a href="project-dyslexia.html" class="shelf-book sb1"><span>Dyslexia Toolkit</span></a>
+    <a href="project-shhelf.html" class="shelf-book sb2"><span>Shh-elf</span></a>
+    <a href="project-workshop.html" class="shelf-book sb3"><span>Workshop</span></a>
+    <div class="shelf-book sb-portfolio" id="shelfPortfolio"><span>Portfolio</span></div>
+    <a href="project-teaching.html" class="shelf-book sb4"><span>Teaching</span></a>
+    <a href="project-thinkingtypes.html" class="shelf-book sb5"><span>Thinking Types</span></a>
+    <a href="about.html" class="shelf-book sb6"><span>Bibliotherapy</span></a>
+    <span class="intro-shelf-hint">pull a book</span>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav>
@@ -879,6 +1225,38 @@ btn.addEventListener('click', () => {
     setTimeout(() => card.classList.remove('flip-in'), 350);
   }, 200);
 });
+
+// ── Intro animation ──
+(function() {
+  var overlay = document.getElementById('introOverlay');
+  var portfolio = document.getElementById('shelfPortfolio');
+  var coverWrap = document.getElementById('introCoverWrap');
+  var bookWrap = document.querySelector('.intro-book-wrap');
+
+  portfolio.addEventListener('click', function() {
+    portfolio.classList.add('pulled');
+    // Step 1: Pull book, show cover
+    setTimeout(function() {
+      overlay.classList.add('fade-out');
+      coverWrap.classList.add('active');
+    }, 800);
+    // Step 2: Hold cover, then flip open
+    setTimeout(function() {
+      bookWrap.classList.add('flipping');
+    }, 2800);
+    // Step 3: After flip, fade to page
+    setTimeout(function() {
+      coverWrap.classList.add('fade-out');
+      document.body.classList.remove('intro-active');
+      document.body.classList.add('intro-done');
+      setTimeout(function() {
+        overlay.remove();
+        coverWrap.remove();
+        document.body.classList.remove('intro-done');
+      }, 1200);
+    }, 4200);
+  });
+})();
 
 // ── Fade-up observer ──
 const observer = new IntersectionObserver((entries) => {
